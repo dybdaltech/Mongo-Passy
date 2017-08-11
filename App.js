@@ -14,9 +14,15 @@ var config = require('./config');
 let app = express();
 let port = config.port;
 let url = config.mongoURL;
+let collection = config.mongoCollection;
 console.log(config.welcome);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', config.vengine);
+
+//Incase there's no DB service or failed to connect to the mongoDB:
+Db.connect(url, function(err, db) {
+      assert.equal(null, err)
+}
 
 //Bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -24,12 +30,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //Query function. Finds the password:
 var findPassword = function (db, query, callback){
-  db.collection(config.mongoCollection, function(err, collection){
+  db.collection(collection, function(err, collection){
     collection.findOne({"sha1-id":query}, function (err, result){
       if(result === null){
         console.log('Found none');
         if(config.saveFailed == true){
-          db.collection(config.mongoCollection).insertOne( {
+          db.collection(collection).insertOne( {
             "sha1-id" : query
            }), function (err, result){
               assert.equal(err, null);
@@ -53,6 +59,13 @@ var findPassword = function (db, query, callback){
   });
 }
 
+
+var outputFinal = function (text) {
+      console.log('Querrying');
+      console.log("|"+text+"|");
+      console.log('|----------------------------------------|');
+}
+
 //Set the public folder (Not needed?)
 app.use(express.static('public'));
 //Render the site, index.pug (change engine in config.js, might need changes)
@@ -66,9 +79,7 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res){
   var postReq = req.body.Passord;
-  console.log('Querrying: ')
-  console.log("|"+postReq+"|");
-  console.log('|----------------------------------------|');
+  outputFinal(postReq);
   var sharded = sha1(postReq).toLocaleUpperCase();
   console.log("|"+sharded+"|");
   MongoClient.connect(url, function (err, db) {
