@@ -28,7 +28,7 @@ module.exports = config;
 */
 
 //I've used my settings here, change appropiatly or use the blank found above:
-config.welcome = "Starting application";
+config.welcome = "Started application";
 
 //Express configuration:
 config.port = 3333; //Port to run web-service on.
