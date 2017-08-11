@@ -1,5 +1,33 @@
 var config = {};
+/*
+Hello! In order to use this web-app you need the following:
+Install the required packages
+Have a mongodb ready to be used. (Either locally or externally)
 
+You must then configure the application below.
+Here's a blank configuration:
+
+config.welcome = "Starting application..";
+
+//Express configuration:
+config.port = 3333; //Port to run web-service on.
+
+//View engine settings:
+config.vengine = "pug";
+//mongo configuration:
+config.mongoURL = ''; 
+config.mongoCollection = '';
+config.secretCookie = 'keyboard cat'; //Cookie secret - not used yet
+
+//Application settings
+config.saveFailed = false; //Save failed attempts to database, soon we will have the biggest collection!
+config.pageTitle = "Password Check"; //Page title..
+
+module.exports = config;
+
+*/
+
+//I've used my settings here, change appropiatly or use the blank found above:
 config.welcome = "Starting application";
 
 //Express configuration:
@@ -10,7 +38,7 @@ config.vengine = "pug";
 //mongo configuration:
 config.mongoURL = 'mongodb://localhost:27017/hashStorage'; 
 config.mongoCollection = 'shaOne';
-config.secretCookie = 'keyboard cat'; //Cookie secret
+config.secretCookie = 'keyboard cat'; //Cookie secret - not used yet
 
 //Application settings
 config.saveFailed = false; //Save failed attempts to database, soon we will have the biggest collection!
