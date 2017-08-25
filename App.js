@@ -14,12 +14,18 @@ var config = require('./config');
 let app = express();
 let port = config.port;
 let url = config.mongoURL;
+let collection = config.mongoCollection;
 console.log(config.welcome);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', config.vengine);
 
+//Incase there's no DB service or failed to connect to the mongoDB:
+Db.connect(url, function(err, db) {
+      assert.equal(null, err)
+});
+
 //Bodyparser middleware
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //Query function. Finds the password:
@@ -53,6 +59,13 @@ var findPassword = function (db, query, callback){
   });
 }
 
+
+var outputFinal = function (text) {
+      console.log('Querrying');
+      console.log("|"+text+"|");
+      console.log('|----------------------------------------|');
+}
+
 //Set the public folder (Not needed?)
 app.use(express.static('public'));
 //Render the site, index.pug (change engine in config.js, might need changes)
@@ -66,9 +79,7 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res){
   var postReq = req.body.Passord;
-  console.log('Querrying: ')
-  console.log("|"+postReq+"|");
-  console.log('|----------------------------------------|');
+  outputFinal(postReq);
   var sharded = sha1(postReq).toLocaleUpperCase();
   console.log("|"+sharded+"|");
   MongoClient.connect(url, function (err, db) {
@@ -81,6 +92,5 @@ app.post('/', function (req, res){
   //Redir to index.pug
   res.redirect("/");
 });
-
 
 app.listen(port)
