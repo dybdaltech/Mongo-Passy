@@ -8,7 +8,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 var config = require('./config');
-
+//KOMMENTAR
 
 //Some settings are defined in config.js:
 let app = express();
