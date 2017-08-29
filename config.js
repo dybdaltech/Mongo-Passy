@@ -1,4 +1,5 @@
 var config = {};
+let version = "0.1.0";
 /*
 Hello! In order to use this web-app you need the following:
 Install the required packages
@@ -35,7 +36,7 @@ config.welcome = `%c ________________________________________
          \\  (oo)\\_______
             (__)\\       )\\/\\
                 ||----w |
-                ||     ||`;
+                ||     ||`+"Version: "+version;
 
 //Express configuration:
 config.port = 3333; //Port to run web-service on.
