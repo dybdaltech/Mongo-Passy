@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', config.vengine);
 
 //Incase there's no DB service or failed to connect to the mongoDB:
-Db.connect(url, function(err, db) {
+MongoClient.connect(url, function(err, db) {
       assert.equal(null, err)
 });
 
