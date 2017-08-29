@@ -43,8 +43,8 @@ config.port = 3333; //Port to run web-service on.
 //View engine settings:
 config.vengine = "pug";
 //mongo configuration:
-config.mongoURL = 'mongodb://localhost:27017/hashStorage'; 
-config.mongoCollection = 'shaOne';
+config.mongoURL = 'mongodb://172.19.20.138:27017/hashStorage'; 
+config.mongoCollection = 'sha1-hash';
 config.secretCookie = 'keyboard cat'; //Cookie secret - not used yet
 
 //Application settings
