@@ -62,12 +62,20 @@ var olePassord = function (db, query, res, callback){
   db.collection(config.mongoCollection, function(err, collection){
     collection.findOne({"sha1-id":query}, function(err, result){
       if (result === null){
+        res.json({
+          "mongo":"none..",
+          "success":"no"
+        });
+        res.send('Could not find any matches');
         console.log("DET FUNGERT IKKE!!");
       } else {
         collection.find({"_id":result._id}, function (err, cursor){
           cursor.toArray( function (err, docs){
             password = docs;
-            res.send(docs)
+            res.json({
+              "mongo":docs,
+              "success":"yes"
+            });
           });
         });
       }
