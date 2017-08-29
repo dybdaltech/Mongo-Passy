@@ -67,7 +67,6 @@ var olePassord = function (db, query, res, callback){
           "success":"no"
         });
         res.send('Could not find any matches');
-        console.log("DET FUNGERT IKKE!!");
       } else {
         collection.find({"_id":result._id}, function (err, cursor){
           cursor.toArray( function (err, docs){
