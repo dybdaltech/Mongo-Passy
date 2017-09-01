@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "Client for mongo-passy",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "client",
+    "mongo",
+    "passy",
+    "mongo-passy"
+  ],
+  "author": "dybdaltech",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "request": "^2.81.0",
+    "sha1": "^1.1.1"
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mongo-Passy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="C:\Users\bad\OneDrive\Web\MEAN-stack\Mongo-Passy\client\node_modules\bootstrap\dist\css\bootstrap.css"
+        media="screen">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">Mongo-Passy</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- DATA HER -->
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <!-- Forms
+      ================================================== -->
+        <div class="bs-docs-section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <br>
+                        <h1 id="forms">Mongo-Passy</h1>
+                        <p>Klient til å bruke sammen med Mongo-passy prosjektet!</p>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="well bs-component">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>Input</legend>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button type="button" class="btn btn-primary" onClick="getPassword()">Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <h3>Output: </h3>
+                <ul class="list-group" id="PASSWORDS">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="C:\Users\bad\OneDrive\Web\MEAN-stack\Mongo-Passy\client\node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    <script>
+        var request = require('request');
+        var sha1 = require('sha1');
+        function getPassword(){
+            console.log('Sending GET to 3333');
+            var passwordForm = document.getElementById('inputPassword').value;
+            var shaOnePassword = sha1(passwordForm);
+            request.post("http://localhost:3333/post", {form:{"Passord":shaOnePassword}}, function ( err, res, body){
+                body = JSON.parse(body);
+                console.log(body);
+                //reqPassword(body);
+                addResult(body);
+            })
+        }
+        function addResult(text){
+            //text = JSON.parse(text);
+            let mongo = text;
+            console.log(mongo);
+            var list = document.getElementById('PASSWORDS');
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(text));
+            li.setAttribute("id", "list-group-item");
+            list.appendChild(li);
+        }      
+/*
+        function reqPassword(arr){
+            var passResponse = arr[0]["mongo"];
+            var passSucc = arr[0]["success"];
+            console.log(passResponse);
+            console.log(passSucc);
+        }
+*/
+    </script>
+</body>
+
+</html>

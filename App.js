@@ -8,7 +8,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 var config = require('./config');
-//KOMMENTAR
+
 
 //Some settings are defined in config.js:
 let app = express();
@@ -30,6 +30,7 @@ var olePassord = function (db, query, res, callback){
   db.collection(config.mongoCollection, function(err, collection){
     collection.findOne({"sha1-id":query}, function(err, result){
       if (result === null){
+        res.writeHead(404, { 'Content-Type': 'application/json' });
         res.json({
           "mongo":"none..",
           "success":"no"
@@ -61,5 +62,16 @@ app.post('/post', function (req, res){
     });
   });
 });
-
+//Nye get skjitn
+app.get('/get', function (req, res){
+  var postReq = req.body.Passord;
+  console.log('GETTING SHIT')
+  MongoClient.connect(url, function (err, db) {
+    assert.equal(null, err);
+    olePassord(db, postReq, res, function() { 
+      console.log("...GET");
+      db.close;//
+    });
+  });
+});
 app.listen(port)
