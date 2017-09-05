@@ -1,5 +1,5 @@
 var config = {};
-let version = "0.1.0";
+let version = "0.1.2";
 /*
 Hello! In order to use this web-app you need the following:
 Install the required packages

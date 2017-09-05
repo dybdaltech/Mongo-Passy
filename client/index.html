@@ -5,13 +5,8 @@
     <meta charset="utf-8">
     <title>Mongo-Passy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="C:\Users\bad\OneDrive\Web\MEAN-stack\Mongo-Passy\client\node_modules\bootstrap\dist\css\bootstrap.css"
+    <link rel="stylesheet" href=".\node_modules\bootstrap\dist\css\bootstrap.css"
         media="screen">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
-      <script src="../bower_components/respond/dest/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -23,12 +18,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <!-- DATA HER -->
-            </ul>
         </div>
     </div>
     </div>
@@ -74,7 +63,7 @@
         </div>
     </div>
 </div>
-    <script src="C:\Users\bad\OneDrive\Web\MEAN-stack\Mongo-Passy\client\node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    <script src=".\node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
     <script>
         var request = require('request');
         var sha1 = require('sha1');
@@ -83,11 +72,11 @@
             var passwordForm = document.getElementById('inputPassword').value;
             var shaOnePassword = sha1(passwordForm);
             request.post("http://localhost:3333/post", {form:{"Passord":shaOnePassword}}, function ( err, res, body){
-                body = JSON.parse(body);
+                //body = JSON.parse(body);
                 console.log(body);
                 //reqPassword(body);
                 addResult(body);
-            })
+            });
         }
         function addResult(text){
             //text = JSON.parse(text);

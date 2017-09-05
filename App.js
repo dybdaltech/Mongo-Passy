@@ -30,7 +30,7 @@ var olePassord = function (db, query, res, callback){
   db.collection(config.mongoCollection, function(err, collection){
     collection.findOne({"sha1-id":query}, function(err, result){
       if (result === null){
-        res.writeHead(404, { 'Content-Type': 'application/json' });
+        //res.writeHead(404, { 'Content-Type': 'application/json' });
         res.json({
           "mongo":"none..",
           "success":"no"
